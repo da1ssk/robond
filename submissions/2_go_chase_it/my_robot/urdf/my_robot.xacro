@@ -16,12 +16,12 @@
     <pose>0 0 0.0525 0 0 0</pose>
 
     <inertial>
-      <mass value="3.0"/>
+      <mass value="10.0"/>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <inertia
-          ixx="0.02" ixy="0" ixz="0"
-          iyy="0.02" iyz="0"
-          izz="0.02"
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"
       />
     </inertial>
 
@@ -40,7 +40,7 @@
     </visual>
 
     <!-- casters -->  
-    <xacro:property name="caster_x" value="0.0" />
+    <xacro:property name="caster_x" value="0.1" />
   
     <collision name='back_caster_collision'>
       <origin xyz="${caster_x} -0.0 -0.03" rpy=" 0 0 0"/>
@@ -55,8 +55,21 @@
         <sphere radius="0.02"/>
       </geometry>
     </visual>
+  
+    <collision name='front_caster_collision'>
+      <origin xyz="-${caster_x} -0.0 -0.03" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.0199"/>
+      </geometry>
+    </collision>
 
-
+    <visual name='front_caster_visual'>
+      <origin xyz="-${caster_x} -0.0 -0.03" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </visual>
+    
 
     <!-- Add the Cybertruck -->
     <visual>
@@ -107,7 +120,7 @@
   </link>
 
   <joint type="continuous" name="left_wheel_hinge">
-    <origin xyz="-.18 0.083 -0.01" rpy="0 0 0"/>
+    <origin xyz="0 0.083 -0.01" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -143,7 +156,7 @@
   </link>
 
   <joint type="continuous" name="right_wheel_hinge">
-    <origin xyz="-.18 -0.083 -0.01" rpy="0 0 0"/>
+    <origin xyz="0 -0.083 -0.01" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -297,10 +310,10 @@
   
   <!-- Add colors -->
   <gazebo reference="left_wheel">
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="right_wheel">
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="chassis">
     <material>Gazebo/Gray</material>
