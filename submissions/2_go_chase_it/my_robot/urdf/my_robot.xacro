@@ -28,51 +28,57 @@
     <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/> 
       <geometry>
-        <box size=".6 .2 .025"/>
+        <box size=".5 .2 .01"/>
       </geometry>
     </collision>
 
     <visual name='chassis_visual'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
-        <box size=".55 .2 .025"/>
+        <box size=".5 .2 .01"/>
       </geometry>
     </visual>
 
+    <!-- casters -->  
+    <xacro:property name="caster_x" value="0.0" />
+  
     <collision name='back_caster_collision'>
-      <origin xyz="0.2 -0.08 -0.03" rpy=" 0 0 0"/>
+      <origin xyz="${caster_x} -0.0 -0.03" rpy=" 0 0 0"/>
       <geometry>
         <sphere radius="0.0199"/>
       </geometry>
     </collision>
 
     <visual name='back_caster_visual'>
-      <origin xyz="0.2 -0.08 -0.03" rpy=" 0 0 0"/>
+      <origin xyz="${caster_x} -0.0 -0.03" rpy=" 0 0 0"/>
       <geometry>
         <sphere radius="0.02"/>
       </geometry>
     </visual>
 
-    <collision name='front_caster_collision'>
-      <origin xyz="0.2 0.08 -0.03" rpy=" 0 0 0"/>
+
+
+    <!-- Add the Cybertruck -->
+    <visual>
+      <origin xyz="0.02 0 -0.05" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.0199"/>
+        <mesh filename="package://my_robot/meshes/cybertruck.stl"/>
+      </geometry>
+    </visual>
+    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".5 .2 .01"/>
       </geometry>
     </collision>
-
-    <visual name='front_caster_visual'>
-      <origin xyz="0.2 0.08 -0.03" rpy=" 0 0 0"/>
-      <geometry>
-        <sphere radius="0.02"/>
-      </geometry>
-    </visual>
-
+ 
   </link>
 
-  <!-- Add back wheels -->
+  <!-- Add wheels -->
   <xacro:property name="wheel_radius" value="0.04" />
   <xacro:property name="wheel_mass" value="10" />
-  <xacro:property name="wheel_inertia" value="0.1" />
+  <xacro:property name="wheel_inertia" value="0.2" />
   
   <link name='left_wheel'>
     <visual>
@@ -249,7 +255,7 @@
   </link>
   
   <joint type="fixed" name="camera_joint">
-    <origin xyz=".2 0 0" rpy="0 0 0"/>
+    <origin xyz=".25 0 .03" rpy="0 0 0"/>
     <child link="camera"/>
     <parent link="chassis"/>
   </joint>
@@ -283,7 +289,7 @@
   </link>
   
   <joint type="fixed" name="hokuyo_joint">
-    <origin xyz=".15 0 .1" rpy="0 0 0"/>
+    <origin xyz=".0 0 .125" rpy="0 0 0"/>
     <child link="hokuyo"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -291,52 +297,17 @@
   
   <!-- Add colors -->
   <gazebo reference="left_wheel">
-    <material>Gazebo/Green</material>
+    <material>Gazebo/Black</material>
   </gazebo>
   <gazebo reference="right_wheel">
-    <material>Gazebo/Green</material>
+    <material>Gazebo/Black</material>
   </gazebo>
   <gazebo reference="chassis">
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Gray</material>
   </gazebo>
   <gazebo reference="camera">
-    <material>Gazebo/Red</material>
+    <material>Gazebo/Black</material>
   </gazebo>
-
-  
-  <!-- Add Cybertruck -->
-  <link name="cybertruck">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://my_robot/meshes/cybertruck.stl"/>
-      </geometry>
-    </visual>
-    
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size=".01 .01 .01"/>
-      </geometry>
-    </collision>
-    
-    <inertial>
-      <mass value="1e-5"/>
-      <origin xyz="0 0 0" rpy=" 0 0 0"/>
-      <inertia
-        ixx="1e-6" ixy="0" ixz="0"
-        iyy="1e-6" iyz="0"
-        izz="1e-6"
-      />
-    </inertial>
-  </link>
-  
-  <joint type="fixed" name="cybertruck_joint">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <child link="cybertruck"/>
-    <parent link="chassis"/>
-    <axis xyz="0 1 0" rpy="0 0 0"/>
-  </joint>
   
 </robot>
 

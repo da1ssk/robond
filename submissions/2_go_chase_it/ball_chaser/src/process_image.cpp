@@ -33,7 +33,7 @@ void process_image_callback(const sensor_msgs::Image img)
     static int last_seen = 0; // 0:left, 1:right
     float lin_x = 0.5;
     float ang_z = 0;
-    const float new_ang_z = 1.5707 / 2.0; // 45 degrees
+    const float new_ang_z = 1.5707 / 2.0; // 90 degrees
     
     for (int i = 0; i < img.height * img.step; i++) {
         if (img.data[i] == white_pixel) {
@@ -44,18 +44,20 @@ void process_image_callback(const sensor_msgs::Image img)
             if (x < oneThird) { // left
                 ang_z = new_ang_z;
                 last_seen = 0;
+                printf("left");
             } else if (x < oneThird * 2) { // middle
-                // do nothing
+                printf("middle");
             } else { // right
                 ang_z = -new_ang_z;
                 last_seen = 1;
+                printf("right");
             }
             
             // call drive_bot
             drive_robot(lin_x, ang_z);
             
             // Wait for robot to settle
-            ros::Duration(0.25).sleep();
+//            ros::Duration(0.25).sleep();
             return;
         }
     }
@@ -63,6 +65,7 @@ void process_image_callback(const sensor_msgs::Image img)
     // request a stop if no white pixel is found
 //    drive_robot(0, 0);
 
+    // keep searching the ball by rotating itself
     if (last_seen == 0) {
         lin_x = 0;
         ang_z = new_ang_z;
