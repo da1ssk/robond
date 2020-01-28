@@ -34,9 +34,18 @@ void process_image_callback(const sensor_msgs::Image img)
     float lin_x = 0.5;
     float ang_z = 0;
     const float new_ang_z = 1.5707 / 2.0; // 90 degrees
+    int bytesPerPixel = img.step / img.width;
     
-    for (int i = 0; i < img.height * img.step; i++) {
-        if (img.data[i] == white_pixel) {
+    for (int i = 0; i < img.height * img.width; i += bytesPerPixel) {
+        bool isWhitePixel = true;
+        
+        for (int k = 0; k < bytesPerPixel; k++) {
+            if (img.data[i*bytesPerPixel + k] != white_pixel) {
+                isWhitePixel = false;
+            }
+        }
+        
+        if (isWhitePixel) {
             // where is the ball: left/mid/right?
             int x = i % img.step;
             int oneThird = img.step / 3;
