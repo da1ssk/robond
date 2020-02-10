@@ -16,7 +16,7 @@ I also reduced ```update_min_a``` and ```update_min_d``` to 1/10 of the default 
 - ```update_min_a: 0.02``` (default: 0.2)
 - ```update_min_d: 0.052``` (default: PI/6 = 0.52358)
 
-For the laser parameters, I tried to mimic the Hokuyo sensor as much as possible, which left ```laser_*_range``` parameters as default (```-1.0```). Then I tried to "degrade" the sensor by setting ```laser_z_*``` to both ```0.5```. The particles diverged with the defualt update_min_* parameters. That's the reason I increased the update frequency by reducing those parameters.
+For the laser parameters, I tried to mimic the Hokuyo sensor as much as possible, which left ```laser_*_range``` parameters as default (```-1.0```). Then I tried to "degrade" the sensor by setting ```laser_z_*``` to both ```0.5```. The particles diverged with the defualt ```update_min_*``` parameters. That's the reason I increased the update frequency by reducing those parameters.
 
 One thing I wasn't quite sure from the document is the ```laser_max_beam``` parameter. I left it as is.
 
