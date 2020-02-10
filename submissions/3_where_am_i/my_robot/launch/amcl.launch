@@ -16,11 +16,22 @@
     <param name="initial_pose_x" value="0"/>
     <param name="initial_pose_y" value="0"/>
     
-    <param name="min_particles" value="200"/>  <!-- default: 100 -->
+    <param name="min_particles" value="100"/>  <!-- default: 100 -->
     <param name="max_particles" value="2000"/>  <!-- default: 5000 -->
-    <param name="update_min_a" value="0.1"/> <!-- default: 0.2 -->
-    <param name="update_min_d" value="0.26"/>  <!-- default: PI/6 -->
-    <param name="" value=""/>
+    <param name="update_min_a" value="0.02"/> <!-- default: 0.2 -->
+    <param name="update_min_d" value="0.052"/>  <!-- default: PI/6 -->
+    
+    <param name="laser_min_range" value="-1.0"/> <!-- default: -1.0 -->
+    <param name="laser_max_range" value="30.0"/> <!-- default: -1.0 -->
+    <param name="laser_max_beam" value="720"/> <!-- default: 30 -->
+    <param name="laser_z_hit" value="0.5"/>    <!-- default: 0.95 -->
+    <param name="laser_z_rand" value="0.5"/> <!-- default: 0.05 -->
+    
+    <param name="odom_alpha1" value="0.2"/> <!-- default: 0.2 -->
+    <param name="odom_alpha2" value="0.2"/> <!-- default: 0.2 -->
+    <param name="odom_alpha3" value="0.2"/> <!-- default: 0.2 -->
+    <param name="odom_alpha4" value="0.2"/> <!-- default: 0.2 -->
+    
   </node>
   
   <!-- Move Base -->
