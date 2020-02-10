@@ -9,7 +9,7 @@ This will also launch ```amcl.launch```
 ### amcl.launch
 I reduced the max_particles to minimize the computation for updating the particles.
 
-I also reduced update_min_a and update_min_d to 1/10 of the default values so the update occurs more frequently. If the values are too small, it seems it became more unstable to localize, especially when the robot rotates itself at the same place (i.e. when I tap the 'm' key).
+I also reduced ```update_min_a``` and ```update_min_d``` to 1/10 of the default values so the update occurs more frequently. If the values are too small, it seems it became more unstable to localize, especially when the robot rotates itself at the same place (i.e. when I tap the 'm' key).
 
 - ```max_particles: 2000``` (default: 5000)
 - ```min_particles: default (100)```
