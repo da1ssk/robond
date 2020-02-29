@@ -3,8 +3,11 @@
 2.29.2020
 
 ## Mapping result
-See "rtabmap0.db" in the project directory.
-It has 25 closed loops.
+See "rtabmap0.db.tar.gz" in the project directory.
+Please uncompress it before reviewing.
+It has 25 closed loops as in the image below.
+
+
 
 ## How to launch
 ```roslaunch my_robot world.launch```
