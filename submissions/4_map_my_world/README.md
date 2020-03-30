@@ -5,14 +5,15 @@
 ## Mapping result
 See "rtabmap0.db.tar.gz" in the project directory.
 Please uncompress it before reviewing.
+
 It has 25 closed loops as in the image below.
 
-
+<img src="db.png" alt="Your image title" width="600"/>
 
 ## How to launch
-```roslaunch my_robot world.launch```
-```roslaunch my_robot localization.launch```
-```rosrun teleop_twist_keyboard teleop_twist_keyboard.py```
+- ```roslaunch my_robot world.launch```
+- ```roslaunch my_robot localization.launch```
+- ```rosrun teleop_twist_keyboard teleop_twist_keyboard.py```
 
 ## Necessary changes
 - I needed to change the <frame_id> value in mapping.launch to "robot_footprint", as hinted in this [answer](https://knowledge.udacity.com/questions/36912)
